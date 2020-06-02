@@ -1,9 +1,7 @@
 import express from 'express'
+import routes from './routes'
 
 const app = express()
-
-app.get('/users', (req, res) => {
-   return res.json('aaa')
-})
+app.use(routes)
 
 app.listen(3333)
