@@ -60,6 +60,7 @@ class PointsController {
   async index(req: Request, res: Response)
   {
     const { uf, city, items } = req.query
+    console.log(req)
     const parsedItems = String(items).split(',')
                                      .map( item => Number(item.trim() ))
     const points = await knex('points')
@@ -73,12 +74,12 @@ class PointsController {
     const serializedPoints = points.map( point => {
       return {
         ...point,
-        image:`http://192.168.1.101:3333/uploads/${req.file.filename}`
+        image:`http://192.168.1.101:3333/uploads/${point.image}`
       }
     })
 
 
-    return res.json(points);
+    return res.json(serializedPoints);
   }
 
   async show(req: Request, res: Response)
